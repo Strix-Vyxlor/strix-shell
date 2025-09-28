@@ -1,0 +1,145 @@
+
+$base00: #2E3440;
+$base01: #3B4252;
+$base02: #434C5E;
+$base03: #4c566a;
+$base04: #D8DEE9;
+$base05: #E5E9F0;
+$base06: #ECEFF4;
+$base07: #8FBCBB;
+$base08: #BF616A;
+$base09: #D08770;
+$base0A: #EBCB8B;
+$base0B: #A3BE8C;
+$base0C: #88C0D0;
+$base0D: #B48EAD;
+$base0E: #5E81AC;
+$base0F: #81A1C1;
+
+
+* {
+  font-family: MesloLGS NF;
+  //color: $base05;
+}
+
+// bar
+
+.MainContainer {
+  padding: 2px 5px;
+  margin: 2px 5px;
+  background-color: $base00;
+  border-radius: 10px;
+}
+
+.PowerButton, .PowerButton:hover {
+  padding: 0px 2px;
+  margin: 2px;
+  background-color: $base00;
+}
+
+.Tray {
+  margin: 0px 0px 0px 2px;
+}
+
+.Tray button {
+  padding: 0px 2px;
+  margin: 0px 2px;
+  background-color: $base00;
+}
+
+.Tray button:hover {
+  padding: 0px 2px;
+  margin: 0px 2px;
+  background-color: $base02;
+}
+
+.Workspaces {
+  background-color: $base00;
+  padding: 0px 7px;
+  font-size: 14px;
+}
+
+.Workspaces button {
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+  color: rgba($base0D, .4);
+}
+
+.Workspaces button.Focused {
+  color: $base0D;
+}
+
+.Workspaces button.Inactive {
+  color: transparent;
+  text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5)
+}
+
+.Workspaces button:hover {
+  //color: transparent;
+  text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .8);
+  transition: all 1s ease;
+}
+
+.Battery {
+  color: $base05;
+  margin: 0px 2px;
+}
+
+.BatteryCharging {
+  color: $base0B;
+  margin: 0px 2px;
+}
+
+.BatteryLow {
+  color: $base08;
+  margin: 0px 2px;
+}
+
+.BatteryCritical {
+  color: $base08;
+  margin: 0px 2px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .3)
+  }
+  100% {
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0)
+  }
+
+}
+
+.Network {
+  padding: 0px 5px 0px 0px;
+  margin: 0px 2px;
+}
+
+
+// powermenu
+
+.PowerMenuContainer {
+  margin: 2px 5px;
+  padding: 4px;
+  background-color: $base00;
+  border-radius: 10px;
+}
+
+
+.ShutdownButton {
+  background-color: $base08;
+  color: white;
+}
+
+.RebootButton {
+  background-color: $base09;
+  color: white;
+}
+
+.LogoutButton {
+  background-color: $base0A;
+  color: white;
+}
+
