@@ -9,6 +9,7 @@ dependencies = [
   dependency('glib-2.0'),
   dependency('gobject-2.0'),
   dependency('libnm'),
+  dependency('json-glib-1.0'),
   dependency('gtk+-3.0'),
   dependency('astal-io-0.1'),
   dependency('astal-3.0'),
@@ -31,7 +32,8 @@ main = configure_file(
 
 sources = files(
   'widgets/Bar.vala',
-  'widgets/PowerMenu.vala'
+  'widgets/PowerMenu.vala',
+  'widgets/Utils.vala'
   )
 
 exe = executable(

@@ -29,6 +29,7 @@
             ])
             ++ (with pkgs; [
               gtk3
+              json-glib
               pkg-config
             ]);
         };

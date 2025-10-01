@@ -19,7 +19,11 @@ $base0F: #81A1C1;
 
 * {
   font-family: MesloLGS NF;
-  //color: $base05;
+}
+
+tooltip {
+  background-color: $base01;
+  color: $base05;
 }
 
 // bar
@@ -28,12 +32,14 @@ $base0F: #81A1C1;
   padding: 2px 5px;
   margin: 2px 5px;
   background-color: $base00;
+  color: $base05;
   border-radius: 10px;
 }
 
 .PowerButton, .PowerButton:hover {
   padding: 0px 2px;
   margin: 2px;
+  color: $base05;
   background-color: $base00;
 }
 
@@ -104,17 +110,32 @@ $base0F: #81A1C1;
 
 @keyframes pulse {
   0% {
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .3)
+    color: $base08 
+  }
+  50% {
+    color: darken($base08, 20)
   }
   100% {
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0)
+    color: $base08
   }
-
 }
 
 .Network {
   padding: 0px 5px 0px 0px;
   margin: 0px 2px;
+  color: $base05;
+}
+
+.Inhibitor {
+  padding: 0px;
+  background-color: transparent;
+  color: $base05;
+}
+
+.InhibitorActive {
+  padding: 0px;
+  background-color: transparent;
+  color: $base0D;
 }
 
 
@@ -130,16 +151,16 @@ $base0F: #81A1C1;
 
 .ShutdownButton {
   background-color: $base08;
-  color: white;
+  color: $base05;
 }
 
 .RebootButton {
   background-color: $base09;
-  color: white;
+  color: $base05;
 }
 
 .LogoutButton {
   background-color: $base0A;
-  color: white;
+  color: $base05;
 }
 

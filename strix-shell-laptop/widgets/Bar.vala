@@ -164,6 +164,71 @@ class Workspaces : Gtk.Box {
   }
 }
 
+class Inhibitor : Astal.Button {
+  private bool active = false;
+  private uint inhibit_cookie = 0;
+  private DBusProxy? screensaver_proxy;
+
+  private async void inhibit_sleep() {
+    try {
+      screensaver_proxy = new DBusProxy.for_bus_sync(
+        BusType.SESSION,
+        DBusProxyFlags.NONE,
+        null,
+        "org.freedesktop.ScreenSaver",
+        "/org/freedesktop/ScreenSaver",
+        "org.freedesktop.ScreenSaver"
+      );
+
+      inhibit_cookie = screensaver_proxy.call_sync(
+        "Inhibit",
+        new Variant("(ss)", "MyApp", "Preventing sleep"),
+        DBusCallFlags.NONE,
+        -1,
+        null
+      ).get_child_value(0).get_uint32();
+
+    } catch (Error e) {
+      stderr.printf("Failed to inhibit sleep: %s\n", e.message);
+    }
+  }
+
+  private void uninhibit_sleep() {
+    if (screensaver_proxy != null && inhibit_cookie != 0) {
+      try {
+        screensaver_proxy.call_sync(
+          "UnInhibit",
+          new Variant("(u)", inhibit_cookie),
+          DBusCallFlags.NONE,
+          -1,
+          null
+        );
+      } catch (Error e) {
+        stderr.printf("Failed to uninhibit sleep: %s\n", e.message);
+      }
+    }
+  }
+
+  public void on_click() {
+    active = !active;
+    if (active) {
+      Astal.widget_set_class_names(this, {"InhibitorActive"});
+      this.inhibit_sleep.begin();
+      label = "󱙱";
+    } else {
+      Astal.widget_set_class_names(this, {"Inhibitor"});
+      this.uninhibit_sleep();
+      label = "󰌾";
+    }
+  }
+
+  public Inhibitor() {
+    Astal.widget_set_class_names(this, {"Inhibitor"});
+    this.clicked.connect(this.on_click);
+    label = "󰌾";
+  }
+}
+
 class Wifi : Astal.Label {
   public void on_change() {
     var wifi = AstalNetwork.get_default().wifi; 
@@ -237,63 +302,70 @@ class Network : Gtk.Bin {
   }
 }
 
+// NOTE: do this later with full menu
+// class Bluetooth : Astal.Label {
+//   public Bluetooth() {
+//     Astal.widget_set_class_names(this, {"Bluetooth"});
+//   }
+// }
+
 class Battery : Astal.Label {
-  private double _percentage;
-  private bool _charging;
+  private AstalBattery.Device battery = AstalBattery.get_default();
 
-  public double percentage {
-    get { return this._percentage; }
-    set {
-      this._percentage = value;
-      if (!this._charging && value > 0.1) {
-        switch ( (int)Math.round((value*300)/50) ) {
-          case 0:
-            Astal.widget_set_class_names(this, {"BatteryLow"});
-            this.label = "󰂎";
-            break;
-          case 1:
-            this.label = "󰁻";
-            break;
-          case 2:
-            this.label = "󰁼";
-            break;
-          case 3:
-            this.label = "󰁾";
-            break;
-          case 4:
-            this.label = "󰂀";
-            break;
-          case 5:
-            this.label = "󰂂";
-            break;
-          case 6:
-            this.label = "󰁹";
-            break;
-        }
-      } else if (value < 0.1) {
-        this.label = "󰂃";
-        Astal.widget_set_class_names(this, {"BatteryCritical"});
+  private void on_change() { 
+    if (!this.battery.charging && this.battery.percentage > 0.1) {
+      switch ( (int)Math.round((this.battery.percentage*300)/50) ) {
+        case 0:
+          Astal.widget_set_class_names(this, {"BatteryLow"});
+          this.label = "󰂎";
+          break;
+        case 1:
+          this.label = "󰁻";
+          Astal.widget_set_class_names(this, {"BatteryLow"});
+          break;
+        case 2:
+          this.label = "󰁼";
+          break;
+        case 3:
+          this.label = "󰁾";
+          break;
+        case 4:
+          this.label = "󰂀";
+          break;
+        case 5:
+          this.label = "󰂂";
+          break;
+        case 6:
+          this.label = "󰁹";
+          break;
       }
+    } else if (this.battery.percentage < 0.1) {
+      this.label = "󰂃";
+      Astal.widget_set_class_names(this, {"BatteryCritical"});
     }
-  }
 
-  public bool charging {
-    get { return this._charging; }
-    set {
-      this._charging = value;
-      if (value) {
-        this.label = "󰂄";
-        Astal.widget_set_class_names(this, {"BatteryCharging"});
-      }
+    string time_hour;
+    string time_minute;
+
+    if (this.battery.charging) {
+      this.label = "󰂄";
+      Astal.widget_set_class_names(this, {"BatteryCharging"});
+      time_hour = (this.battery.time_to_full/3600).to_string();
+      time_minute = ((this.battery.time_to_full%3600)/60).to_string();
+    } else {
+      time_hour = (this.battery.time_to_empty/3600).to_string();
+      time_minute = ((this.battery.time_to_empty%3600)/60).to_string();
     }
+    
+    this.tooltip_text = Math.round(this.battery.percentage*100).to_string() + "%, " + time_hour +" h "+ time_minute + " min";
+
   }
 
   public Battery() {
     //var icons =  {"󰂎","󰁻","󰁼","󰁾","󰂀","󰂂", "󰁹" };
     Astal.widget_set_class_names(this, {"Battery"});
-    var battery = AstalBattery.get_default();
-    battery.bind_property("percentage", this, "percentage",BindingFlags.SYNC_CREATE);
-    battery.bind_property("charging", this, "charging", BindingFlags.SYNC_CREATE); 
+    this.battery.notify.connect(this.on_change);
+    on_change();    
   } 
 }
 
@@ -326,6 +398,7 @@ class Right : Gtk.Box {
     Object(hexpand: false, halign: Gtk.Align.END);
     Astal.widget_set_class_names (this, {"MainContainer"});
     add(new Spacer());
+    add(new Inhibitor());
     add(new Network());
     add(new Battery());
   }
