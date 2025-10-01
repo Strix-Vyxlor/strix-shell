@@ -4,9 +4,11 @@ class App : Gtk.Application {
   private Bar bar;
   private PowerMenu powermenu;
 
+  private string default_style = """@STYLE@""";
+
   private void init_css() {
     var provider = new Gtk.CssProvider();
-    provider.load_from_data("""@STYLE@""");
+    provider.load_from_data(default_style);
 
     Gtk.StyleContext.add_provider_for_screen(
       Gdk.Screen.get_default(),

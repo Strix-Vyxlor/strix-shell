@@ -246,7 +246,7 @@ class Wifi : Astal.Label {
   }
 
   public Wifi() {
-    Astal.widget_set_class_names(this, {"Network","NetworkWifi"});
+    Astal.widget_set_class_names(this, {"Network","Wifi"});
     // var wifi = AstalNetwork.get_default().wifi;
     // wifi.notify.connect(this.on_change);
     on_change();
@@ -270,7 +270,7 @@ class Wired : Astal.Label {
   }
 
   public Wired() {
-    Astal.widget_set_class_names(this, {"Network","NetworkWired"});
+    Astal.widget_set_class_names(this, {"Network","kWired"});
     on_change();
   }
 }
@@ -282,7 +282,7 @@ class Network : Gtk.Bin {
     switch (network.primary) {
       case UNKNOWN:
         var label = new Astal.Label() {label = ""};
-        Astal.widget_set_class_names(label, {"Network", "NetworkUnknown"});
+        Astal.widget_set_class_names(label, {"Network", "Unknown"});
         add(label);
         break;
       case WIFI:
@@ -302,13 +302,6 @@ class Network : Gtk.Bin {
   }
 }
 
-// NOTE: do this later with full menu
-// class Bluetooth : Astal.Label {
-//   public Bluetooth() {
-//     Astal.widget_set_class_names(this, {"Bluetooth"});
-//   }
-// }
-
 class Battery : Astal.Label {
   private AstalBattery.Device battery = AstalBattery.get_default();
 
@@ -316,12 +309,12 @@ class Battery : Astal.Label {
     if (!this.battery.charging && this.battery.percentage > 0.1) {
       switch ( (int)Math.round((this.battery.percentage*300)/50) ) {
         case 0:
-          Astal.widget_set_class_names(this, {"BatteryLow"});
+          Astal.widget_set_class_names(this, {"Low"});
           this.label = "󰂎";
           break;
         case 1:
           this.label = "󰁻";
-          Astal.widget_set_class_names(this, {"BatteryLow"});
+          Astal.widget_set_class_names(this, {"Low"});
           break;
         case 2:
           this.label = "󰁼";
@@ -341,7 +334,7 @@ class Battery : Astal.Label {
       }
     } else if (this.battery.percentage < 0.1) {
       this.label = "󰂃";
-      Astal.widget_set_class_names(this, {"BatteryCritical"});
+      Astal.widget_set_class_names(this, {"Critical"});
     }
 
     string time_hour;

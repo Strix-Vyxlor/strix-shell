@@ -12,8 +12,8 @@ $base09: #D08770;
 $base0A: #EBCB8B;
 $base0B: #A3BE8C;
 $base0C: #88C0D0;
-$base0D: #B48EAD;
-$base0E: #5E81AC;
+$base0D: #5E81AC;
+$base0E: #B48EAD;
 $base0F: #81A1C1;
 
 
@@ -90,24 +90,23 @@ tooltip {
 .Battery {
   color: $base05;
   margin: 0px 2px;
-}
 
-.BatteryCharging {
-  color: $base0B;
-  margin: 0px 2px;
-}
+  .Charging {
+    color: $base0B;
+    margin: 0px 2px;
+  }
 
-.BatteryLow {
-  color: $base08;
-  margin: 0px 2px;
-}
+  .Low {
+    color: $base08;
+    margin: 0px 2px;
+  }
 
-.BatteryCritical {
-  color: $base08;
-  margin: 0px 2px;
-  animation: pulse 2s infinite;
+  .Critical {
+    color: $base08;
+    margin: 0px 2px;
+    animation: pulse 2s infinite;
+  }
 }
-
 @keyframes pulse {
   0% {
     color: $base08 
