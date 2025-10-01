@@ -52,42 +52,48 @@ class Clock : Astal.Label {
 }
 
 class Tray : Gtk.Box {
-    HashTable<string, Gtk.Widget> items = new HashTable<string, Gtk.Widget>(str_hash, str_equal);
-    AstalTray.Tray tray = AstalTray.get_default();
+  HashTable<string, Gtk.Widget> items = new HashTable<string, Gtk.Widget>(str_hash, str_equal);
+  AstalTray.Tray tray = AstalTray.get_default();
 
-    public Tray() {
-        Astal.widget_set_class_names(this, { "Tray" });
-        tray.item_added.connect(add_item);
-        tray.item_removed.connect(remove_item);
+  public Tray() {
+    Astal.widget_set_class_names(this, { "TrayEmpty" });
+    tray.item_added.connect(add_item);
+    tray.item_removed.connect(remove_item);
+    spacing = 0;
+  }
+
+  void add_item(string id) {
+    if (items.contains(id))
+      return;
+
+    Astal.widget_set_class_names(this, { "Tray" });
+
+    var item = tray.get_item(id);
+    var btn = new Gtk.MenuButton() { use_popover = false, visible = true };
+    var icon = new Astal.Icon() { visible = true };
+
+    item.bind_property("tooltip-markup", btn, "tooltip-markup", BindingFlags.SYNC_CREATE);
+    item.bind_property("gicon", icon, "gicon", BindingFlags.SYNC_CREATE);
+    item.bind_property("menu-model", btn, "menu-model", BindingFlags.SYNC_CREATE);
+    btn.insert_action_group("dbusmenu", item.action_group);
+    item.notify["action-group"].connect(() => {
+      btn.insert_action_group("dbusmenu", item.action_group);
+    });
+
+    btn.add(icon);
+    add(btn);
+    items.set(id, btn);
+  }
+
+  void remove_item(string id) {
+    if (items.contains(id)) {
+      items.get(id).hide();
+      items.remove(id);
     }
-
-    void add_item(string id) {
-        if (items.contains(id))
-            return;
-
-        var item = tray.get_item(id);
-        var btn = new Gtk.MenuButton() { use_popover = false, visible = true };
-        var icon = new Astal.Icon() { visible = true };
-
-        item.bind_property("tooltip-markup", btn, "tooltip-markup", BindingFlags.SYNC_CREATE);
-        item.bind_property("gicon", icon, "gicon", BindingFlags.SYNC_CREATE);
-        item.bind_property("menu-model", btn, "menu-model", BindingFlags.SYNC_CREATE);
-        btn.insert_action_group("dbusmenu", item.action_group);
-        item.notify["action-group"].connect(() => {
-            btn.insert_action_group("dbusmenu", item.action_group);
-        });
-
-        btn.add(icon);
-        add(btn);
-        items.set(id, btn);
+    if (items.length == 0) {
+      Astal.widget_set_class_names(this, {"TrayEmpty"});
     }
-
-    void remove_item(string id) {
-        if (items.contains(id)) {
-            items.get(id).hide();
-            items.remove(id);
-        }
-    }
+  }
 }
 
 class Workspaces : Gtk.Box {
@@ -96,6 +102,7 @@ class Workspaces : Gtk.Box {
   public Workspaces() {
     Astal.widget_set_class_names(this, {"Workspaces"});
     hypr.notify["workspaces"].connect(sync);
+    spacing = 0;
     sync();
   }
 
@@ -309,12 +316,12 @@ class Battery : Astal.Label {
     if (!this.battery.charging && this.battery.percentage > 0.1) {
       switch ( (int)Math.round((this.battery.percentage*300)/50) ) {
         case 0:
-          Astal.widget_set_class_names(this, {"Low"});
+          Astal.widget_set_class_names(this, {"BatteryLow"});
           this.label = "󰂎";
           break;
         case 1:
           this.label = "󰁻";
-          Astal.widget_set_class_names(this, {"Low"});
+          Astal.widget_set_class_names(this, {"BatteryLow"});
           break;
         case 2:
           this.label = "󰁼";
@@ -334,7 +341,7 @@ class Battery : Astal.Label {
       }
     } else if (this.battery.percentage < 0.1) {
       this.label = "󰂃";
-      Astal.widget_set_class_names(this, {"Critical"});
+      Astal.widget_set_class_names(this, {"BatteryCritical"});
     }
 
     string time_hour;

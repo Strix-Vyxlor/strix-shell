@@ -1,6 +1,24 @@
 class ShutdownButton : Astal.Button {
   private void on_click() {
-    print("shutdown\n");
+    try {
+      string command = Settings.settings.get_object().get_object_member("power_commands").get_string_member("shutdown");
+      string? standard_output;
+      string? standard_error;
+      int exit_status;
+
+      Process.spawn_command_line_sync(
+        command,
+        out standard_output,
+        out standard_error,
+        out exit_status
+      );
+
+      if (standard_output != null) {
+          print("Output: %s\n", standard_output);
+      }
+    } catch (Error e) {
+      stderr.printf("Failed to shudown: %s\n", e.message); 
+    } 
   } 
 
   public ShutdownButton() {
@@ -14,7 +32,25 @@ class ShutdownButton : Astal.Button {
 
 class RebootButton : Astal.Button {
   private void on_click() {
-    print("reboot\n");
+    try {
+      string command = Settings.settings.get_object().get_object_member("power_commands").get_string_member("reboot");
+      string? standard_output;
+      string? standard_error;
+      int exit_status;
+
+      Process.spawn_command_line_sync(
+        command,
+        out standard_output,
+        out standard_error,
+        out exit_status
+      );
+
+      if (standard_output != null) {
+          print("Output: %s\n", standard_output);
+      }
+    } catch (Error e) {
+      stderr.printf("Failed to shudown: %s\n", e.message); 
+    }
   }
 
 
@@ -29,13 +65,63 @@ class RebootButton : Astal.Button {
 
 class LogoutButton : Astal.Button {
   private void on_click() {
-    print("logout\n");
+    try {
+      string command = Settings.settings.get_object().get_object_member("power_commands").get_string_member("logout");
+      string? standard_output;
+      string? standard_error;
+      int exit_status;
+
+      Process.spawn_command_line_sync(
+        command,
+        out standard_output,
+        out standard_error,
+        out exit_status
+      );
+
+      if (standard_output != null) {
+          print("Output: %s\n", standard_output);
+      }
+    } catch (Error e) {
+      stderr.printf("Failed to shudown: %s\n", e.message); 
+    }
   }
 
   public LogoutButton() {
     Object(halign: Gtk.Align.CENTER, valign: Gtk.Align.CENTER);     
     Astal.widget_set_class_names(this, {"LogoutButton"});  
     this.label = "󰍃";    
+
+    this.clicked.connect(on_click);
+  }
+}
+
+class HibernateButton : Astal.Button {
+  private void on_click() {
+    try {
+      string command = Settings.settings.get_object().get_object_member("power_commands").get_string_member("hibernate");
+      string? standard_output;
+      string? standard_error;
+      int exit_status;
+
+      Process.spawn_command_line_sync(
+        command,
+        out standard_output,
+        out standard_error,
+        out exit_status
+      );
+
+      if (standard_output != null) {
+          print("Output: %s\n", standard_output);
+      }
+    } catch (Error e) {
+      stderr.printf("Failed to shudown: %s\n", e.message); 
+    }
+  }
+
+  public HibernateButton() {
+    Object(halign: Gtk.Align.CENTER, valign: Gtk.Align.CENTER);     
+    Astal.widget_set_class_names(this, {"HibernateButton"});  
+    this.label = "";    
 
     this.clicked.connect(on_click);
   }
@@ -57,6 +143,7 @@ class PowerMenuContainer : Astal.EventBox {
     Astal.widget_set_class_names(vbox, {"PowerMenuContainer"});
     vbox.add(new ShutdownButton());
     vbox.add(new RebootButton());
+    vbox.add(new HibernateButton());
     vbox.add(new LogoutButton());
 
     this.add(vbox);  

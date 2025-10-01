@@ -19,6 +19,7 @@ $base0F: #81A1C1;
 
 * {
   font-family: MesloLGS NF;
+  font-size: 13px;
 }
 
 tooltip {
@@ -29,40 +30,54 @@ tooltip {
 // bar
 
 .MainContainer {
-  padding: 2px 5px;
-  margin: 2px 5px;
-  background-color: $base00;
+  padding: 0px 3px;
+  margin: 0px 3px;
+  background-color: transparent;
   color: $base05;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .PowerButton, .PowerButton:hover {
   padding: 0px 2px;
-  margin: 2px;
   color: $base05;
   background-color: $base00;
+  border-radius: 15px 0px 0px 15px;
+}
+
+.Clock {
+  background-color: $base00;
+  padding: 0px 5px 0px 0px;
+  border-radius: 0px 15px 15px 0px;
 }
 
 .Tray {
   margin: 0px 0px 0px 2px;
+  padding: 0px 2px;
+  border-radius: 15px;
+  background-color: $base00;
+}
+
+.TrayEmpty {
+  background-color: transparent;
 }
 
 .Tray button {
-  padding: 0px 2px;
-  margin: 0px 2px;
+  padding: 0px 0px;
+  margin: 0px 0px;
   background-color: $base00;
 }
 
 .Tray button:hover {
-  padding: 0px 2px;
-  margin: 0px 2px;
+  padding: 0px 0px;
+  margin: 0px 0px;
   background-color: $base02;
 }
 
+
 .Workspaces {
   background-color: $base00;
-  padding: 0px 7px;
-  font-size: 14px;
+  padding: 0px 3px;
+  border-radius: 15px;
 }
 
 .Workspaces button {
@@ -89,24 +104,37 @@ tooltip {
 
 .Battery {
   color: $base05;
-  margin: 0px 2px;
-
-  .Charging {
-    color: $base0B;
-    margin: 0px 2px;
-  }
-
-  .Low {
-    color: $base08;
-    margin: 0px 2px;
-  }
-
-  .Critical {
-    color: $base08;
-    margin: 0px 2px;
-    animation: pulse 2s infinite;
-  }
+  margin: 0px 2px 0px 0px;
+  padding: 0px 7px 0px 1px;
+  border-radius: 0px 15px 15px 0px;
+  background-color: $base00;
 }
+
+.BatteryCharging {
+  color: $base0B;
+  margin: 0px 2px 0px 0px;
+  padding: 0px 7px 0px 1px;
+  border-radius: 0px 15px 15px 0px;
+  background-color: $base00;
+}
+
+.BatteryLow {
+  color: $base08;
+  margin: 0px 2px 0px 0px;
+  padding: 0px 7px 0px 1px;
+  border-radius: 0px 15px 15px 0px;
+  background-color: $base00;
+}
+
+.BatteryCritical {
+  color: $base08;
+  margin: 0px 2px 0px 0px;
+  padding: 0px 7px 0px 1px;
+  animation: pulse 2s infinite;
+  border-radius: 0px 15px 15px 0px;
+  background-color: $base00;
+}
+
 @keyframes pulse {
   0% {
     color: $base08 
@@ -121,19 +149,21 @@ tooltip {
 
 .Network {
   padding: 0px 5px 0px 0px;
-  margin: 0px 2px;
   color: $base05;
+  background-color: $base00;
 }
 
 .Inhibitor {
-  padding: 0px;
-  background-color: transparent;
+  padding: 0px 0px 0px 5px;
+  background-color: $base00;
+  border-radius: 15px 0px 0px 15px;
   color: $base05;
 }
 
 .InhibitorActive {
-  padding: 0px;
-  background-color: transparent;
+  padding: 0px 0px 0px 5px;
+  background-color: $base00;
+  border-radius: 15px 0px 0px 15px;
   color: $base0D;
 }
 
@@ -150,16 +180,25 @@ tooltip {
 
 .ShutdownButton {
   background-color: $base08;
+  padding: 2px 5px;
   color: $base05;
 }
 
 .RebootButton {
   background-color: $base09;
+  padding: 2px 5px;
+  color: $base05;
+}
+
+.HibernateButton {
+  background-color: $base0A;
+  padding: 2px 5px;
   color: $base05;
 }
 
 .LogoutButton {
-  background-color: $base0A;
+  background-color: $base0B;
+  padding: 2px 5px;
   color: $base05;
 }
 

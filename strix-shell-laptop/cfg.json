@@ -1,0 +1,8 @@
+{
+  "power_commands": {
+    "shutdown": "systemctl poweroff",
+    "reboot": "systemctl reboot",
+    "logout": "hyprctl dispatch exit",
+    "hibernate": "systemctl hibernate"
+  }
+}
