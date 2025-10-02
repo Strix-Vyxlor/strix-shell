@@ -33,7 +33,7 @@ tooltip {
 
 .MainContainer {
   padding: 0px 3px;
-  margin: 0px 3px;
+  margin: 5px;
   background-color: transparent;
   color: $base05;
   border-radius: 15px;
@@ -43,14 +43,14 @@ tooltip {
   padding: 0px 2px;
   color: $base05;
   background-color: $background;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
   border-radius: 15px 0px 0px 15px;
 }
 
 .Clock {
   background-color: $background;
   padding: 0px 5px 0px 0px;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
   border-radius: 0px 15px 15px 0px;
 }
 
@@ -58,7 +58,7 @@ tooltip {
   margin: 0px 0px 0px 2px;
   padding: 0px 5px;
   border-radius: 15px;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
   background-color: $background;
 }
 
@@ -70,14 +70,14 @@ tooltip {
   padding: 0px 0px;
   margin: 0px 2px;
   background-color: $background;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
 }
 
 .Tray button:hover {
   padding: 0px 0px;
   margin: 0px 2px;
   background-color: $background;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
 }
 
 
@@ -86,7 +86,7 @@ tooltip {
   padding: 0px 5px;
   border-radius: 15px;
   font-size: 14px;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
 }
 
 .Workspaces button {
@@ -118,7 +118,7 @@ tooltip {
   padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
   background-color: $background;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
 }
 
 .BatteryCharging {
@@ -136,7 +136,7 @@ tooltip {
   padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
   background-color: $background;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
 }
 
 .BatteryCritical {
@@ -146,7 +146,7 @@ tooltip {
   animation: pulse 2s infinite;
   border-radius: 0px 15px 15px 0px;
   background-color: $background;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
 }
 
 @keyframes pulse {
@@ -165,7 +165,7 @@ tooltip {
   padding: 0px 5px 0px 1px;
   color: $base05;
   background-color: $background;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
 }
 
 .Inhibitor {
@@ -173,7 +173,7 @@ tooltip {
   background-color: $background;
   border-radius: 15px 0px 0px 15px;
   color: $base05;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
 }
 
 .InhibitorActive {
@@ -181,7 +181,7 @@ tooltip {
   background-color: $background;
   border-radius: 15px 0px 0px 15px;
   color: $base0D;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .4);
 }
 
 
