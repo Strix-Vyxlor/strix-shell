@@ -2,7 +2,7 @@
 $base00: #2E3440;
 $base01: #3B4252;
 $base02: #434C5E;
-$base03: #4c566a;
+$base03: #4C566A;
 $base04: #D8DEE9;
 $base05: #E5E9F0;
 $base06: #ECEFF4;
@@ -41,12 +41,12 @@ tooltip {
 .PowerButton, .PowerButton:hover {
   padding: 0px 2px;
   color: $base05;
-  background-color: $base00;
+  background-color: $base01;
   border-radius: 15px 0px 0px 15px;
 }
 
 .Clock {
-  background-color: $base00;
+  background-color: $base01;
   padding: 0px 5px 0px 0px;
   border-radius: 0px 15px 15px 0px;
 }
@@ -55,7 +55,7 @@ tooltip {
   margin: 0px 0px 0px 2px;
   padding: 0px 5px;
   border-radius: 15px;
-  background-color: $base00;
+  background-color: $base01;
 }
 
 .TrayEmpty {
@@ -65,18 +65,18 @@ tooltip {
 .Tray button {
   padding: 0px 0px;
   margin: 0px 2px;
-  background-color: $base00;
+  background-color: $base01;
 }
 
 .Tray button:hover {
   padding: 0px 0px;
   margin: 0px 2px;
-  background-color: $base00;
+  background-color: $base01;
 }
 
 
 .Workspaces {
-  background-color: $base00;
+  background-color: $base01;
   padding: 0px 5px;
   border-radius: 15px;
   font-size: 14px;
@@ -110,7 +110,7 @@ tooltip {
   margin: 0px 2px 0px 0px;
   padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
-  background-color: $base00;
+  background-color: $base01;
 }
 
 .BatteryCharging {
@@ -118,7 +118,7 @@ tooltip {
   margin: 0px 2px 0px 0px;
   padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
-  background-color: $base00;
+  background-color: $base01;
 }
 
 .BatteryLow {
@@ -126,7 +126,7 @@ tooltip {
   margin: 0px 2px 0px 0px;
   padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
-  background-color: $base00;
+  background-color: $base01;
 }
 
 .BatteryCritical {
@@ -135,7 +135,7 @@ tooltip {
   padding: 0px 7px 0px 3px;
   animation: pulse 2s infinite;
   border-radius: 0px 15px 15px 0px;
-  background-color: $base00;
+  background-color: $base01;
 }
 
 @keyframes pulse {
@@ -153,19 +153,19 @@ tooltip {
 .Network {
   padding: 0px 5px 0px 1px;
   color: $base05;
-  background-color: $base00;
+  background-color: $base01;
 }
 
 .Inhibitor {
   padding: 0px 0px 0px 5px;
-  background-color: $base00;
+  background-color: $base01;
   border-radius: 15px 0px 0px 15px;
   color: $base05;
 }
 
 .InhibitorActive {
   padding: 0px 0px 0px 5px;
-  background-color: $base00;
+  background-color: $base01;
   border-radius: 15px 0px 0px 15px;
   color: $base0D;
 }
