@@ -48,7 +48,7 @@
 
       homeManagerModules = rec {
         default = strix-shell;
-        strix-shell = {imports = [(import ./module.nix)];};
+        strix-shell = {imports = [(import ./module.nix inputs)];};
       };
     };
 

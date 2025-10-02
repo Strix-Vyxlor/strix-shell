@@ -1,4 +1,4 @@
-{
+inputs: {
   pkgs,
   config,
   lib,
@@ -10,7 +10,7 @@
 
   config = {
     nixpkgs.overlays = [
-      (import ./overlay.nix)
+      (import ./overlay.nix inputs)
     ];
   };
 }
