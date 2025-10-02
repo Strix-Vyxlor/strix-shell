@@ -64,7 +64,7 @@ in {
           if (cfg.colors == null)
           then ""
           else
-            (builtins.readFile pkgs.runCommand "generate_style_css" {} ''
+            (builtins.readFile (pkgs.runCommand "generate_style_css" {} ''
               cp ${pkgs.strix-shell.laptop}/style.scss .
               sed -ins "s/2E3400/${cfg.colors.base00}" style.scss
               sed -ins "s/3B4252/${cfg.colors.base01}" style.scss
@@ -84,7 +84,7 @@ in {
               sed -ins "s/81A1C1/${cfg.colors.base0F}" style.scss
 
               ${pkgs.dast-sass}/bin/sass style.scss $out
-            '')
+            ''))
         )
         + (
           if (cfg.style == null)
