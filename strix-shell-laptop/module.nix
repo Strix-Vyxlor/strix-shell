@@ -66,7 +66,7 @@ in {
           else
             (builtins.readFile (pkgs.runCommand "generate_style_css" {} ''
               cp ${./.}/style.scss .
-              sed -ins "s/2E3400/${cfg.colors.base00}/" style.scss
+              sed -ins "s/2E3440/${cfg.colors.base00}/" style.scss
               sed -ins "s/3B4252/${cfg.colors.base01}/" style.scss
               sed -ins "s/434C5E/${cfg.colors.base02}/" style.scss
               sed -ins "s/4C566A/${cfg.colors.base03}/" style.scss
