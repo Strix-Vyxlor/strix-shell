@@ -56,10 +56,10 @@ in {
     {
       home.packages = [cfg.package];
 
-      home.file.".config/zix/config.json".text = builtins.toJSON cfg.config;
+      home.file.".config/strix-shell/laptop/config.json".text = builtins.toJSON cfg.config;
     }
     (mkIf (cfg.style != null || cfg.colors != null) {
-      home.file.".config/zix/style.css".text =
+      home.file.".config/strix-shell/laptop/style.css".text =
         (
           if (cfg.colors == null)
           then ""
