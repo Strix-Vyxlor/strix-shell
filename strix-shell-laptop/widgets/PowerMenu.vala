@@ -153,7 +153,7 @@ class PowerMenuContainer : Astal.EventBox {
 }
 
 class PowerMenu : Astal.Window {
-  public PowerMenu() {
+  public PowerMenu(Gdk.Monitor monitor) {
     Object(
       anchor: Astal.WindowAnchor.TOP
         | Astal.WindowAnchor.LEFT,
@@ -162,9 +162,10 @@ class PowerMenu : Astal.Window {
 
     Astal.widget_set_class_names(this, {"PowerMenu"});
 
-   this.add(new PowerMenuContainer(this)); 
-   this.show_all();
-   this.hide();
-  }
-  
+    gdkmonitor = monitor;
+
+    this.add(new PowerMenuContainer(this)); 
+    this.show_all();
+    this.hide();
+  }  
 }

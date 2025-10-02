@@ -405,7 +405,7 @@ class Right : Gtk.Box {
 }
 
 class Bar : Astal.Window {
-  public Bar(Gtk.Window powermenu) {
+  public Bar(Gdk.Monitor monitor,Gtk.Window powermenu) {
     Object(
       anchor: Astal.WindowAnchor.TOP
         | Astal.WindowAnchor.LEFT
@@ -414,6 +414,8 @@ class Bar : Astal.Window {
     );
 
     Astal.widget_set_class_names(this, {"Bar"});
+
+    gdkmonitor = monitor;
 
     add(new Astal.CenterBox() {
       start_widget = new Left(powermenu),

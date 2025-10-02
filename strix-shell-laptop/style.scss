@@ -16,10 +16,11 @@ $base0D: #5E81AC;
 $base0E: #B48EAD;
 $base0F: #81A1C1;
 
+@use 'sass:color';
+
 
 * {
   font-family: MesloLGS NF;
-  font-size: 13px;
 }
 
 tooltip {
@@ -52,7 +53,7 @@ tooltip {
 
 .Tray {
   margin: 0px 0px 0px 2px;
-  padding: 0px 2px;
+  padding: 0px 5px;
   border-radius: 15px;
   background-color: $base00;
 }
@@ -63,21 +64,22 @@ tooltip {
 
 .Tray button {
   padding: 0px 0px;
-  margin: 0px 0px;
+  margin: 0px 2px;
   background-color: $base00;
 }
 
 .Tray button:hover {
   padding: 0px 0px;
-  margin: 0px 0px;
-  background-color: $base02;
+  margin: 0px 2px;
+  background-color: $base00;
 }
 
 
 .Workspaces {
   background-color: $base00;
-  padding: 0px 3px;
+  padding: 0px 5px;
   border-radius: 15px;
+  font-size: 14px;
 }
 
 .Workspaces button {
@@ -89,6 +91,7 @@ tooltip {
 
 .Workspaces button.Focused {
   color: $base0D;
+  font-size: 15px;
 }
 
 .Workspaces button.Inactive {
@@ -105,7 +108,7 @@ tooltip {
 .Battery {
   color: $base05;
   margin: 0px 2px 0px 0px;
-  padding: 0px 7px 0px 1px;
+  padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
   background-color: $base00;
 }
@@ -113,7 +116,7 @@ tooltip {
 .BatteryCharging {
   color: $base0B;
   margin: 0px 2px 0px 0px;
-  padding: 0px 7px 0px 1px;
+  padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
   background-color: $base00;
 }
@@ -121,7 +124,7 @@ tooltip {
 .BatteryLow {
   color: $base08;
   margin: 0px 2px 0px 0px;
-  padding: 0px 7px 0px 1px;
+  padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
   background-color: $base00;
 }
@@ -129,7 +132,7 @@ tooltip {
 .BatteryCritical {
   color: $base08;
   margin: 0px 2px 0px 0px;
-  padding: 0px 7px 0px 1px;
+  padding: 0px 7px 0px 3px;
   animation: pulse 2s infinite;
   border-radius: 0px 15px 15px 0px;
   background-color: $base00;
@@ -140,7 +143,7 @@ tooltip {
     color: $base08 
   }
   50% {
-    color: darken($base08, 20)
+    color: color.adjust($base08, $lightness: -20%)
   }
   100% {
     color: $base08
@@ -148,7 +151,7 @@ tooltip {
 }
 
 .Network {
-  padding: 0px 5px 0px 0px;
+  padding: 0px 5px 0px 1px;
   color: $base05;
   background-color: $base00;
 }
