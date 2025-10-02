@@ -66,22 +66,22 @@ in {
           else
             (builtins.readFile (pkgs.runCommand "generate_style_css" {} ''
               cp ${./.}/style.scss .
-              sed -ins "s/2E3400/${cfg.colors.base00}" style.scss
-              sed -ins "s/3B4252/${cfg.colors.base01}" style.scss
-              sed -ins "s/434C5E/${cfg.colors.base02}" style.scss
-              sed -ins "s/4C566A/${cfg.colors.base03}" style.scss
-              sed -ins "s/D8DEE9/${cfg.colors.base04}" style.scss
-              sed -ins "s/E5E9F0/${cfg.colors.base05}" style.scss
-              sed -ins "s/ECEFF4/${cfg.colors.base06}" style.scss
-              sed -ins "s/8FBCBB/${cfg.colors.base07}" style.scss
-              sed -ins "s/BF616A/${cfg.colors.base08}" style.scss
-              sed -ins "s/D08770/${cfg.colors.base09}" style.scss
-              sed -ins "s/EBCB8B/${cfg.colors.base0A}" style.scss
-              sed -ins "s/A3BE8C/${cfg.colors.base0B}" style.scss
-              sed -ins "s/88C0D0/${cfg.colors.base0C}" style.scss
-              sed -ins "s/5E81AC/${cfg.colors.base0D}" style.scss
-              sed -ins "s/B48EAD/${cfg.colors.base0E}" style.scss
-              sed -ins "s/81A1C1/${cfg.colors.base0F}" style.scss
+              sed -ins "s/2E3400/${cfg.colors.base00}/" style.scss
+              sed -ins "s/3B4252/${cfg.colors.base01}/" style.scss
+              sed -ins "s/434C5E/${cfg.colors.base02}/" style.scss
+              sed -ins "s/4C566A/${cfg.colors.base03}/" style.scss
+              sed -ins "s/D8DEE9/${cfg.colors.base04}/" style.scss
+              sed -ins "s/E5E9F0/${cfg.colors.base05}/" style.scss
+              sed -ins "s/ECEFF4/${cfg.colors.base06}/" style.scss
+              sed -ins "s/8FBCBB/${cfg.colors.base07}/" style.scss
+              sed -ins "s/BF616A/${cfg.colors.base08}/" style.scss
+              sed -ins "s/D08770/${cfg.colors.base09}/" style.scss
+              sed -ins "s/EBCB8B/${cfg.colors.base0A}/" style.scss
+              sed -ins "s/A3BE8C/${cfg.colors.base0B}/" style.scss
+              sed -ins "s/88C0D0/${cfg.colors.base0C}/" style.scss
+              sed -ins "s/5E81AC/${cfg.colors.base0D}/" style.scss
+              sed -ins "s/B48EAD/${cfg.colors.base0E}/" style.scss
+              sed -ins "s/81A1C1/${cfg.colors.base0F}/" style.scss
 
               ${pkgs.dart-sass}/bin/sass style.scss $out
             ''))
