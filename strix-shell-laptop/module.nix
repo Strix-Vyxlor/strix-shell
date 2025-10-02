@@ -83,7 +83,7 @@ in {
               sed -ins "s/B48EAD/${cfg.colors.base0E}" style.scss
               sed -ins "s/81A1C1/${cfg.colors.base0F}" style.scss
 
-              ${pkgs.dast-sass}/bin/sass style.scss $out
+              ${pkgs.dart-sass}/bin/sass style.scss $out
             ''))
         )
         + (
