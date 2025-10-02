@@ -5,6 +5,9 @@
       system: let
         pkgs = import inputs.nixpkgs {
           inherit system;
+          overlays = [
+            (import ./overlay.nix inputs)
+          ];
         };
       in {
         devShells.default = pkgs.mkShell {
@@ -34,13 +37,13 @@
             ]);
         };
 
-        packages.laptop = pkgs.callPackage (import ./strix-shell-laptop inputs.astal.packages.${system}) {};
+        packages.laptop = pkgs.strix-shell.laptop;
       }
     )
     // {
       overlays = rec {
         default = strix-shell;
-        strix-shell = import ./overlay.nix;
+        strix-shell = import ./overlay.nix inputs;
       };
 
       homeManagerModules = rec {
