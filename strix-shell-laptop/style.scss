@@ -18,13 +18,14 @@ $base0F: #81A1C1;
 
 @use 'sass:color';
 
+$background = rgba($base01, .6)
 
 * {
   font-family: MesloLGS NF;
 }
 
 tooltip {
-  background-color: $base01;
+  background-color: $background;
   color: $base05;
 }
 
@@ -41,12 +42,12 @@ tooltip {
 .PowerButton, .PowerButton:hover {
   padding: 0px 2px;
   color: $base05;
-  background-color: $base01;
+  background-color: $background;
   border-radius: 15px 0px 0px 15px;
 }
 
 .Clock {
-  background-color: $base01;
+  background-color: $background;
   padding: 0px 5px 0px 0px;
   border-radius: 0px 15px 15px 0px;
 }
@@ -55,7 +56,7 @@ tooltip {
   margin: 0px 0px 0px 2px;
   padding: 0px 5px;
   border-radius: 15px;
-  background-color: $base01;
+  background-color: $background;
 }
 
 .TrayEmpty {
@@ -65,18 +66,18 @@ tooltip {
 .Tray button {
   padding: 0px 0px;
   margin: 0px 2px;
-  background-color: $base01;
+  background-color: $background;
 }
 
 .Tray button:hover {
   padding: 0px 0px;
   margin: 0px 2px;
-  background-color: $base01;
+  background-color: $background;
 }
 
 
 .Workspaces {
-  background-color: $base01;
+  background-color: $background;
   padding: 0px 5px;
   border-radius: 15px;
   font-size: 14px;
@@ -110,7 +111,7 @@ tooltip {
   margin: 0px 2px 0px 0px;
   padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
-  background-color: $base01;
+  background-color: $background;
 }
 
 .BatteryCharging {
@@ -118,7 +119,7 @@ tooltip {
   margin: 0px 2px 0px 0px;
   padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
-  background-color: $base01;
+  background-color: $background;
 }
 
 .BatteryLow {
@@ -126,7 +127,7 @@ tooltip {
   margin: 0px 2px 0px 0px;
   padding: 0px 7px 0px 3px;
   border-radius: 0px 15px 15px 0px;
-  background-color: $base01;
+  background-color: $background;
 }
 
 .BatteryCritical {
@@ -135,7 +136,7 @@ tooltip {
   padding: 0px 7px 0px 3px;
   animation: pulse 2s infinite;
   border-radius: 0px 15px 15px 0px;
-  background-color: $base01;
+  background-color: $background;
 }
 
 @keyframes pulse {
@@ -153,19 +154,19 @@ tooltip {
 .Network {
   padding: 0px 5px 0px 1px;
   color: $base05;
-  background-color: $base01;
+  background-color: $background;
 }
 
 .Inhibitor {
   padding: 0px 0px 0px 5px;
-  background-color: $base01;
+  background-color: $background;
   border-radius: 15px 0px 0px 15px;
   color: $base05;
 }
 
 .InhibitorActive {
   padding: 0px 0px 0px 5px;
-  background-color: $base01;
+  background-color: $background;
   border-radius: 15px 0px 0px 15px;
   color: $base0D;
 }
