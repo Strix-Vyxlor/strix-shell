@@ -171,21 +171,53 @@ class Workspaces : Gtk.Box {
   }
 }
 
-class Inhibitor : Astal.Button {
-  private bool active = false;
+public class SleepInhibitorController : Object {
+  private static SleepInhibitorController? _instance;
+  public static SleepInhibitorController instance {
+    get {
+      if (_instance == null) {
+        _instance = new SleepInhibitorController();
+      }
+      return _instance;
+    }
+  }
+
+  private bool _active = false;
+  private DBusProxy? screensaver_proxy = null;
   private uint inhibit_cookie = 0;
-  private DBusProxy? screensaver_proxy;
+
+  public bool active {
+    get { return _active; }
+    set {
+      if (_active != value) {
+        _active = value;
+        notify_property("active");
+
+        if (_active) {
+          inhibit_sleep.begin();
+        } else {
+          uninhibit_sleep();
+        }
+      }
+    }
+  }
+
+  public void toggle() {
+    active = !active;
+  }
 
   private async void inhibit_sleep() {
     try {
-      screensaver_proxy = new DBusProxy.for_bus_sync(
-        BusType.SESSION,
-        DBusProxyFlags.NONE,
-        null,
-        "org.freedesktop.ScreenSaver",
-        "/org/freedesktop/ScreenSaver",
-        "org.freedesktop.ScreenSaver"
-      );
+      if (screensaver_proxy == null) {
+        screensaver_proxy = new DBusProxy.for_bus_sync(
+          BusType.SESSION,
+          DBusProxyFlags.NONE,
+          null,
+          "org.freedesktop.ScreenSaver",
+          "/org/freedesktop/ScreenSaver",
+          "org.freedesktop.ScreenSaver"
+        );
+      }
 
       inhibit_cookie = screensaver_proxy.call_sync(
         "Inhibit",
@@ -215,24 +247,36 @@ class Inhibitor : Astal.Button {
       }
     }
   }
+}
 
-  public void on_click() {
-    active = !active;
-    if (active) {
-      Astal.widget_set_class_names(this, {"InhibitorActive"});
-      this.inhibit_sleep.begin();
-      label = "󱙱";
-    } else {
-      Astal.widget_set_class_names(this, {"Inhibitor"});
-      this.uninhibit_sleep();
-      label = "󰌾";
-    }
-  }
+class Inhibitor : Astal.Button {
 
   public Inhibitor() {
     Astal.widget_set_class_names(this, {"Inhibitor"});
-    this.clicked.connect(this.on_click);
     label = "󰌾";
+
+    // Handle click
+    this.clicked.connect(() => {
+      SleepInhibitorController.instance.toggle();
+    });
+
+    // Update UI when state changes
+    SleepInhibitorController.instance.notify["active"].connect(() => {
+      update_state();
+    });
+
+    // Sync initial state
+    update_state();
+  }
+
+  private void update_state() {
+    if (SleepInhibitorController.instance.active) {
+      Astal.widget_set_class_names(this, {"InhibitorActive"});
+      label = "󱙱";
+    } else {
+      Astal.widget_set_class_names(this, {"Inhibitor"});
+      label = "󰌾";
+    }
   }
 }
 
