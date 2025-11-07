@@ -2,3 +2,5 @@
 /.envrc
 **/result
 **/build
+**/vapi
+**/style.css*

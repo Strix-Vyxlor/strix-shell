@@ -136,6 +136,12 @@ class PowerMenuContainer : Astal.EventBox {
       this.window.hide();
   }
 
+  private void on_show() {
+    Timeout.add_once(3000, ()=>{
+      this.window.hide();
+    });
+  }
+
   public PowerMenuContainer(Gtk.Window window) {
     this.window = window;
 
@@ -149,6 +155,7 @@ class PowerMenuContainer : Astal.EventBox {
     this.add(vbox);  
 
     this.hover_lost.connect(this.on_hover_lost);
+    this.window.show.connect(this.on_show);
   }
 }
 

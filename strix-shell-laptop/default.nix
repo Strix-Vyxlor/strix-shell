@@ -7,6 +7,7 @@ astal: {
   dart-sass,
   gtk3,
   json-glib,
+  libgtop,
   gobject-introspection,
   ...
 }:
@@ -29,6 +30,7 @@ stdenv.mkDerivation {
     hyprland
     battery
     network
+
     json-glib
   ];
 }

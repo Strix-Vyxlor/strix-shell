@@ -33,14 +33,21 @@ main = configure_file(
 sources = files(
   'widgets/Bar.vala',
   'widgets/PowerMenu.vala',
-  'widgets/Utils.vala'
+  'widgets/Utils.vala',
+  'widgets/Menu.vala'
   )
+
+
+vala_args = [
+  '--vapidir=' + meson.project_source_root() + '/vapi'
+]
 
 exe = executable(
   'strix-shell-laptop',
   [sources, main],
   dependencies : dependencies,
-  install : true
+  install : true,
+  vala_args: vala_args
 )
 
 test('basic', exe)

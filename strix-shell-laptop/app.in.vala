@@ -20,6 +20,7 @@ class App : Gtk.Application {
 
   private HashTable<Gdk.Monitor,Bar> bars = new HashTable<Gdk.Monitor,Bar>(monitor_hash, monitor_equal);
   private HashTable<Gdk.Monitor,PowerMenu> powermenus = new HashTable<Gdk.Monitor,PowerMenu>(monitor_hash, monitor_equal);
+  private HashTable<Gdk.Monitor,Menu> menus = new HashTable<Gdk.Monitor, Menu> (monitor_hash, monitor_equal);
 
   private string default_style = """@STYLE@""";
 
@@ -54,11 +55,14 @@ class App : Gtk.Application {
 
   public void add_monitor(Gdk.Display display, Gdk.Monitor monitor) {
     var powermenu = new PowerMenu(monitor); 
-    var bar = new Bar(monitor,powermenu);
+    var menu = new Menu(monitor);
+    var bar = new Bar(monitor,powermenu,menu);
     bars.set(monitor,bar);
     powermenus.set(monitor,powermenu);
+    menus.set(monitor,menu);
 
     add_window(powermenu);
+    add_window(menu);
     add_window(bar);
   }
 
@@ -70,6 +74,10 @@ class App : Gtk.Application {
     if (powermenus.contains(monitor)) {
       powermenus.get(monitor).hide();
       powermenus.remove(monitor);
+    }
+    if (menus.contains(monitor)) {
+      menus.get(monitor).hide();
+      menus.remove(monitor);
     }
   }
 

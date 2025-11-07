@@ -33,6 +33,7 @@
             ++ (with pkgs; [
               gtk3
               json-glib
+              libgtop.dev
               pkg-config
             ]);
         };
