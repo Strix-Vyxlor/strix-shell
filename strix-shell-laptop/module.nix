@@ -101,7 +101,7 @@ in {
           ConditionEnvironment = "WAYLAND_DISPLAY";
           X-Reload-Triggers =
             ["${config.xdg.configFile."strix-shell/laptop/config.json".source}"]
-            ++ optional (cfg.style != null && cfg.colors != null) "${config.xdg.configFile."strix-shell/laptop/style.css".source}";
+            ++ optional (cfg.style != null || cfg.colors != null) "${config.xdg.configFile."strix-shell/laptop/style.css".source}";
         };
 
         Service = {
@@ -118,7 +118,7 @@ in {
       };
     })
     (mkIf (cfg.style != null || cfg.colors != null) {
-      xdg.configFile."strix-shell/laptop/style.css" = mkIf (cfg.style != null) {
+      xdg.configFile."strix-shell/laptop/style.css" = mkIf (cfg.style != null || cfg.colors != null) {
         source =
           pkgs.writeText "strix-shell/laptop/style.css"
           (
