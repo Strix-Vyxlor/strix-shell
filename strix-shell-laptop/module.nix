@@ -100,7 +100,7 @@ in {
           After = [cfg.systemd.target];
           ConditionEnvironment = "WAYLAND_DISPLAY";
           X-Reload-Triggers =
-            ["${config.xdg.configFile."strix-shell/labtop/config.json".source}"]
+            ["${config.xdg.configFile."strix-shell/laptop/config.json".source}"]
             ++ optional (cfg.style != null && cfg.colors != null) "${config.xdg.configFile."strix-shell/laptop/style.css".source}";
         };
 
