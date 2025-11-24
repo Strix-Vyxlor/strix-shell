@@ -85,7 +85,7 @@ in {
       xdg.configFile."strix-shell/laptop/config.json" = {
         source = jsonFormat.generate "strix-shell-config.json" cfg.config;
         onChange = ''
-          ${pkgs.procps}/bin/pkill -u $USER -USR2 strix-shell-laptop || true
+          ${pkgs.procps}/bin/pkill -u $USER -USR2 -f strix-shell-laptop || true
         '';
       };
     }
@@ -153,7 +153,7 @@ in {
             else cfg.style
           );
         onChange = ''
-          ${pkgs.procps}/bin/pkill -u $USER -USR2 strix-shell-laptop || true
+          ${pkgs.procps}/bin/pkill -u $USER -USR2 -f strix-shell-laptop || true
         '';
       };
     })
